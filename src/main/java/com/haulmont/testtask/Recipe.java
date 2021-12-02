@@ -74,4 +74,17 @@ public class Recipe {
     public void setPriority(String priority) {
         this.priority = priority;
     }
+
+    @Override
+    public String toString() {
+        return "Recipe[" +
+                "number=" + number +
+                ", content='" + content + '\'' +
+                ", patientId=" + patientId +
+                ", doctor='" + doctor + '\'' +
+                ", dateOfCreate=" + dateOfCreate +
+                ", validity=" + validity +
+                ", priority='" + priority + '\'' +
+                "]";
+    }
 }

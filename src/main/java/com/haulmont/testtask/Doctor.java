@@ -1,5 +1,10 @@
 package com.haulmont.testtask;
 
+
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Doctor {
     private String surname;
     private String name;
@@ -54,12 +59,16 @@ public class Doctor {
                 ", specialized='" + specialized + '\'' +
                 '}';
     }
+
+
     public void takeRecipe ( Patient patient, String content, int validity, String priority){
         double numberRecipe = patient.getId() * 23.0;
-        Recipe r1 = new Recipe((int)(System.currentTimeMillis()/23456789),  content, patient.getId(),
+        Recipe r1 = new Recipe((int)((System.currentTimeMillis()/23456789)*Math.random()),  content, patient.getId(),
                 this.surname+ " "+ this.name + " " + this.middleName, System.currentTimeMillis(),
-                15, priority); // проработать присвоение номера рецепта, как это происходит?
-        // добавить сразу добавление в базу рецептов (выбрать что лучше, хэшмап или лист??)
+                15, priority);
+                Database.recipeMap.putIfAbsent(r1.getNumber(),r1);
+        // проработать присвоение номера рецепта, как это происходит?
+
         System.out.println("Рецепт № " + r1.getNumber() + " выписан пациенту:\n " + patient.toString());
     }
 
